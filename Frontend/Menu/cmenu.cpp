@@ -938,6 +938,7 @@ void c_menu::draw() {
 		ui::Checkbox("Hide from obs", &cfg->b["misc_hide"]); dmt("misc_hide");
 		ui::Checkbox("Low FPS warning", &cfg->b["misc_lowfpswarning"]); dmt("misc_lowfpswarning");
 		ui::Checkbox("Lock menu layout", &cfg->b["misc_lock"]); dmt("misc_lock");
+		ui::Checkbox("Sendpacket", &G::SendPacket);
 		if (ui::Button("Reset menu layout"))
 			c_config::get()->load();
 		if (ui::Button("Unload") && unload_start_time == INT_MAX)

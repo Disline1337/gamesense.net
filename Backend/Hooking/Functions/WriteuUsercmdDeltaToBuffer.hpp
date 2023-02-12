@@ -47,7 +47,7 @@ namespace Cheat
 		}
 
 		void write_usercmd(void* bf, void* from, void* to) {
-			static auto fn = Cheat::Utilities->Memory_PatternScan("client.dll", "55 8B EC 83 E4 F8 51 53 56 8B D9 8B 0D");
+			static auto fn = Cheat::Utilities->Memory_PatternScan("client.dll", "55 8B EC 83 EC 68 53 56 8B D9 C7");//55 8B EC 83 E4 F8 51 53 56 8B D9 8B 0D
 
 			__asm {
 				mov edx, to

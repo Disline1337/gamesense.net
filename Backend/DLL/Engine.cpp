@@ -99,8 +99,8 @@ void SetupOffsets()
 	offys.dwGetSequenceActivity = Cheat::Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, xorstr_("55 8B EC 53 8B 5D 08 56 8B F1 83") );
 	offys.dwSetAbsOrigin = Cheat::Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, xorstr_("55 8B EC 83 E4 F8 51 53 56 57 8B F1 E8") );
 	offys.dwSetAbsAngles = Cheat::Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, xorstr_("55 8B EC 83 E4 F8 83 EC 64 53 56 57 8B F1 E8") );
-	offys.dwLoadFromBuffer = Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, ( xorstr_("55 8B EC 83 E4 F8 83 EC 34 53 8B 5D 0C 89 4C 24 04") ) );
-	offys.dwInitKeyValues = Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, ( xorstr_("8B 0E 33 4D FC 81 E1 ? ? ? ? 31 0E 88 46 03 C1 F8 08 66 89 46 12 8B C6") ) ) - 0x45;
+	offys.dwLoadFromBuffer = Utilities->Memory_PatternScan( xorstr_("client.dll"), ( xorstr_("55 8B EC 83 E4 F8 83 EC 34 53 8B 5D 0C 89") ) );
+	offys.dwInitKeyValues = Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, ( xorstr_("55 8B EC 51 33 C0 C7 45") ) ); //55 8B EC 85 C9 74 1D
 	offys.dwSmokeCount = Cheat::Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, xorstr_("A3 ? ? ? ? 57 8B CB") ) + 1;
 	offys.dwLoadSky = Utilities->Memory_PatternScan( xorstr_("engine.dll"), xorstr_("55 8B EC 81 EC ? ? ? ? 56 57 8B F9 C7 45") );
 	offys.dwCrosshair = Cheat::Utilities->Memory_PatternScan( Cheat::Settings->ClientDLL, xorstr_("83 F8 05 75 17") );
@@ -239,7 +239,7 @@ bool Cheat::Initialize()
 		static auto dwDoExtraBonesProcessing = (DWORD)((Utilities->Memory_PatternScan("client.dll", "55 8B EC 83 E4 F8 81 EC ? ? ? ? 53 56 8B F1 57 89 74 24 1C")));
 		static auto dwShouldSkipAnimFrame = (DWORD)(Utilities->Memory_PatternScan("client.dll", "57 8B F9 8B 07 8B 80 ? ? ? ? FF D0 84 C0 75 02 5F C3"));
 		// static auto dwStandardBlendingRules = (DWORD)(Utilities->Memory_PatternScan("client.dll", "55 8B EC 83 E4 F0 B8 ? ? ? ? E8 ? ? ? ? 56 8B 75 08 57 8B F9 85 F6"));
-		static auto dwMove = (DWORD)((Utilities->Memory_PatternScan("engine.dll", "55 8B EC 81 EC ? ? ? ? 53 56 57 8B 3D ? ? ? ? 8A")));
+		static auto dwMove = (DWORD)((Utilities->Memory_PatternScan("engine.dll", "55 8B EC 81 EC ? ? ? ? 53 56 8A")));
 
 
 		OriginalDoExtraBonesProcessing = (DWORD)DetourFunction((byte*)dwDoExtraBonesProcessing, (byte*)Hooked::DoExtraBonesProcessing);
@@ -257,8 +257,6 @@ bool Cheat::Initialize()
 	*/
 
 	Utilities->Console_Log( xorstr_("Hooking WndProc") );
-	/*HWND hWnd = FindWindow( xorstr_("Valve001"), 0 );
-	oWndProc = ( WNDPROC )SetWindowLongPtr( hWnd, GWL_WNDPROC, ( LONG )&WndProcHook );*/
 
 	HWND hWnd = FindWindow(xorstr_("Valve001"), 0);
 	oWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWL_WNDPROC, (long)&wndProc); if (!oWndProc) return false;
