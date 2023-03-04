@@ -22,7 +22,7 @@
 #include "../../Lua/CLua.h"
 #define TIME_TO_TICKS( dt )		( (int)( 0.5 + (float)(dt) / Interfaces::Globals->interval_per_tick ) )
 
-typedef bool(__thiscall* fnCreateMove)(IClientMode*, float, CUserCmd*);
+typedef bool(__thiscall* fnCreateMove)(int, float, bool);
 fnCreateMove oCreateMove = nullptr;
 bool netchannel_hook1 = false;
 bool tagreset = false;
@@ -31,17 +31,17 @@ namespace Cheat
 {
 	namespace Hooked
 	{
-
-		bool __stdcall CreateMoveHook(float flInputSampleTime, CUserCmd* UserCmd)
+		bool __stdcall CreateMoveHook(int sequence_number, float input_sample_frametime, bool active)
 		{
+			CUserCmd* UserCmd = Interfaces::Input->GetUserCmd(sequence_number);
 			if (Cheat::Settings->UnloadCheat)
 			{
 				Cheat::Settings->UnloadReadyTable.CreateMove = 0;
-				return oCreateMove(Interfaces::ClientMode, flInputSampleTime, UserCmd);
+				return oCreateMove(sequence_number, input_sample_frametime, active);
 			}
 			Cheat::Settings->UnloadReadyTable.CreateMove = (int)GetTickCount();
 
-			oCreateMove(Interfaces::ClientMode, flInputSampleTime, UserCmd);
+			oCreateMove(sequence_number, input_sample_frametime, active);
 			/*if (!UserCmd || !Interfaces::Engine->IsInGame() || !Interfaces::Engine->IsConnected() || !UserCmd->tick_count)
 				return false;*/
 			if (!UserCmd || !UserCmd->command_number)

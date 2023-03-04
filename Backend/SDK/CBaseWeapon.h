@@ -830,7 +830,7 @@ class CBaseWeapon
 			if ( this && this != NULL && this != nullptr )
 			{
 				typedef CSWeaponInfo *( __thiscall * fn )( void* );
-				return vfunc<fn>( this, 460)( this );
+				return vfunc<fn>( this, 461)( this );
 			}
 		}
 		CSWeaponInfo * get_csweapon_info() {
@@ -839,7 +839,7 @@ class CBaseWeapon
 
 			using Fn = CSWeaponInfo * (__thiscall*)(void*);
 
-			static auto fn = reinterpret_cast<Fn>(Utilities->Memory_PatternScan("client.dll", "55 8B EC 81 EC ? ? ? ? 53 8B D9 56 57 8D 8B ? ? ? ? 85 C9 75 04 33 FF EB 2F"));
+			static auto fn = reinterpret_cast<Fn>(Utilities->Memory_PatternScan("client.dll", "55 8B EC 53 56 57 8B D9 33"));
 			return fn(this);
 		}
 

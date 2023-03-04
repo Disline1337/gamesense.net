@@ -108,7 +108,7 @@ DWORD CUtilities::Memory_PatternScan( std::string moduleName, std::string patter
 			firstMatch = 0;
 		}
 	}
-
+	printf("%s (end)\n", pat);
 	return NULL;
 }
 inline RECT viewport() {

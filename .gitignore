@@ -1,0 +1,17 @@
+
+*.obj
+*.ipch
+*.tlog
+*.vsidx
+*.lock
+.vs/GideonProject/v17/.suo
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+Debug/GideonProject.pdb
+Debug/GideonProject.log
+Debug/GideonProject.ilk
+Debug/GideonProject.dll.recipe
+Debug/vc142.pdb
+Debug/vcpkg.applocal.log

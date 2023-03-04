@@ -1302,7 +1302,7 @@ t &n( )\
 		CBaseAnimState* GetAnimState()
 		{
 			if ( this )
-				return *reinterpret_cast<CBaseAnimState**>( reinterpret_cast<void*>( uintptr_t( this ) + 0x3914) );
+				return *reinterpret_cast<CBaseAnimState**>( reinterpret_cast<void*>( uintptr_t( this ) + 0x9960) );
 		}
 		void set_animation_state( CBaseAnimState* state )
 		{
@@ -1349,11 +1349,11 @@ t &n( )\
 		CAnimationLayer &GetAnimOverlay( int Index )
 		{
 			if ( this )
-				return ( *( CAnimationLayer** )( ( DWORD )this + 0x2980) )[Index];
+				return ( *( CAnimationLayer** )( ( DWORD )this + 0x2990) )[Index];
 		}
 		CAnimationLayer *GetAnimOverlays()
 		{
-			return *(CAnimationLayer**)((DWORD)this + 0x2980);
+			return *(CAnimationLayer**)((DWORD)this + 0x2990);
 		}
 		int GetNumAnimOverlays()
 		{
@@ -1362,7 +1362,7 @@ t &n( )\
 		void SetAnimOverlay( int Index, CAnimationLayer layer )
 		{
 			if ( this )
-				( *( CAnimationLayer** )( ( DWORD )this + 0x2980) )[Index] = layer;
+				( *( CAnimationLayer** )( ( DWORD )this + 0x2990) )[Index] = layer;
 		}
 		int GetSequenceActivity( int sequence )
 		{
@@ -1619,7 +1619,7 @@ t &n( )\
 			typedef void( __thiscall * original )( void* );
 
 			if ( this )
-				vfunc<original>( this, 223)( this );
+				vfunc<original>( this, 224)( this );
 		}
 
 		float GetSpread()
@@ -1627,7 +1627,7 @@ t &n( )\
 			typedef float( __thiscall * original )( void* );
 
 			if ( this )
-				return vfunc<original>( this, 449)( this );
+				return vfunc<original>( this, 483)( this );
 		}
 
 		float GetInaccuracy()
@@ -1635,7 +1635,7 @@ t &n( )\
 			typedef float( __thiscall * oInaccuracy )( PVOID );
 
 			if ( this )
-				return vfunc<oInaccuracy>( this, 479 )( this );
+				return vfunc<oInaccuracy>( this, 461)( this );
 		}
 
 		void SetAbsOrigin( Vector ArgOrigin )
