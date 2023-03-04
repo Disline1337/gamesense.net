@@ -42,8 +42,8 @@ namespace Cheat
 			Cheat::Settings->UnloadReadyTable.CreateMove = (int)GetTickCount();
 
 			oCreateMove(Interfaces::ClientMode, flInputSampleTime, UserCmd);
-			if (!UserCmd || !Interfaces::Engine->IsInGame() || !Interfaces::Engine->IsConnected() || !UserCmd->tick_count)
-				return false;
+			/*if (!UserCmd || !Interfaces::Engine->IsInGame() || !Interfaces::Engine->IsConnected() || !UserCmd->tick_count)
+				return false;*/
 			if (!UserCmd || !UserCmd->command_number)
 				return true;
 

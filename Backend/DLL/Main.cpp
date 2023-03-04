@@ -130,8 +130,8 @@ __forceinline void retard() {
 
 void __stdcall MainThread(LPVOID lpParam)
 {
-	LI_FN(SetUnhandledExceptionFilter).get()(&My_UnhandledExceptionFilter);
-	Cheat::Utilities->Console_Create("skeetsu");
+	//LI_FN(SetUnhandledExceptionFilter).get()(&My_UnhandledExceptionFilter);
+	//Cheat::Utilities->Console_Create("skeetsu");
 
 	Cheat::Settings->LoadDefaults();
 	c_config::get()->_load_defaults();
@@ -186,9 +186,9 @@ void __stdcall MainThread(LPVOID lpParam)
 
 	c_lua::get()->initialize();
 
-	Interfaces::Engine->ClientCmd_Unrestricted(xorstr_("clear"));
+/*	Interfaces::Engine->ClientCmd_Unrestricted(xorstr_("clear"));
 	LI_FN(Sleep).get()(500);
-	Cheat::Utilities->Game_Msg((std::string(xorstr_("Welcome ")) + Cheat::Settings->UserName).c_str());
+	Cheat::Utilities->Game_Msg((std::string(xorstr_("Welcome ")) + Cheat::Settings->UserName).c_str());*/
 
     //SkinChanger::setup_skins();
 	//skins.skinChanger[WEAPON_KNIFE] = {};
