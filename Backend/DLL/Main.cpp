@@ -51,87 +51,10 @@ std::string ssprintf(const char* text, ...) {
 	return std::string(bf);
 }
 
-__forceinline std::vector<std::string> PseudoCode(size_t length = 0) {
-
-	std::vector<std::string> a;
-	a.push_back("abcdefghijklmnopqrstuvwxyz");
-
-	HMODULE hMods[1024];
-	int procID = 0;
-	PROCESSENTRY32 entry;
-	entry.dwSize = sizeof(PROCESSENTRY32);
-
-	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, NULL);
-
-	if (Process32First(snapshot, &entry) == TRUE)
-	{
-		while (Process32Next(snapshot, &entry) == TRUE)
-		{
-			if (_stricmp(entry.szExeFile, xorstr_("x32dbg.exe")) == 0)
-				procID = entry.th32ProcessID;
-		}
-	}
-
-	CloseHandle(snapshot);
-	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procID);
-	DWORD cbNeeded;
-	HMODULE hModArr[1024] = { 0 };
-
-	if (K32EnumProcessModulesEx(hProcess, hMods, sizeof(hMods), &cbNeeded, LIST_MODULES_ALL))
-	{
-		for (int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
-		{
-			TCHAR szModName[MAX_PATH];
-
-			if (K32GetModuleFileNameExA(hProcess, hMods[i], szModName,
-				sizeof(szModName) / sizeof(TCHAR)))
-			{
-
-				if (strstr(szModName, xorstr_("kernel.32")))
-					;
-			}
-		}
-	}
-
-	float sinus = sin(423);
-	sinus *= 2;
-	pow(sinus, 44);
-	return a;
-}
-
-void __stdcall ProtectionThread(LPVOID lpParam) {
-	while (1) {
-		PseudoCode();
-		if (FindWindowA(0, xorstr_("IDA v7.0.170914")) || FindWindowA(0, xorstr_("x64dbg")) || FindWindowA(0, xorstr_("Scylla x64 v0.9.8")) || FindWindowA(0, xorstr_("IAT Autosearch"))) {
-			LI_FN(TerminateProcess).get()(LI_FN(GetCurrentProcess).get()(), 0);
-			PseudoCode();
-			quit(0);
-			PseudoCode();
-			BYTE* trash = (BYTE*)("0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBEEF0x0DEADBE");
-			LI_FN(WriteProcessMemory).get()(GetCurrentProcess(), MainThread, trash, 1024, 0);
-			LI_FN(WriteProcessMemory).get()(GetCurrentProcess(), DllMain, trash, 1024, 0);
-			LI_FN(WriteProcessMemory).get()(GetCurrentProcess(), GetAsyncKeyState, trash, 1024, 0);
-		}
-		PseudoCode();
-	}
-}
-
-__forceinline void antibot() {
-
-}
-
-__forceinline void shitasscode() {
-	
-}
-
-__forceinline void retard() {
-	
-}
-
 void __stdcall MainThread(LPVOID lpParam)
 {
 	//LI_FN(SetUnhandledExceptionFilter).get()(&My_UnhandledExceptionFilter);
-	//Cheat::Utilities->Console_Create("skeetsu");
+	Cheat::Utilities->Console_Create("skeetsu");
 
 	Cheat::Settings->LoadDefaults();
 	c_config::get()->_load_defaults();

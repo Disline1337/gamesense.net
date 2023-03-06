@@ -1076,7 +1076,7 @@ inline void CMisc::BunnyHop()
 
 				if (c_config::get()->i["misc_airstrafe"] == 2)
 				{
-					/*if (!inGround)
+					if (!inGround)
 					{
 						if (circleKeyPressed || (!circleKeyPressed && cStrafeStart && CircleStrafe::IsActive))
 						{
@@ -1128,7 +1128,7 @@ inline void CMisc::BunnyHop()
 								}
 							}
 						}
-					}*/
+					}
 					static auto down = [](ButtonCode_t bt) -> bool {
 						return GetAsyncKeyState(bt);
 					};
@@ -1157,7 +1157,7 @@ inline void CMisc::BunnyHop()
 					if (GetAsyncKeyState(VK_LSHIFT))
 						return;
 
-					/*if (GetAsyncKeyState(VK_CHAR_A) || GetAsyncKeyState(VK_CHAR_S) || GetAsyncKeyState(VK_CHAR_D) || GetAsyncKeyState(VK_CHAR_W)) {
+					if (GetAsyncKeyState(VK_CHAR_A) || GetAsyncKeyState(VK_CHAR_S) || GetAsyncKeyState(VK_CHAR_D) || GetAsyncKeyState(VK_CHAR_W)) {
 						if (GetAsyncKeyState(VK_CHAR_A) || GetAsyncKeyState(VK_CHAR_D)) {
 							if (GetAsyncKeyState(VK_CHAR_A))
 								G::UserCmd->sidemove = -(10000.f) / (G::LocalPlayer->GetVelocity().Length2D() + 1);
@@ -1185,7 +1185,7 @@ inline void CMisc::BunnyHop()
 							G::UserCmd->forwardmove = (10000.f) / (G::LocalPlayer->GetVelocity().Length2D() + 1);
 							G::UserCmd->sidemove = (G::UserCmd->command_number % 2) == 0 ? -450.f : 450.f;
 						}
-					}*/
+					}
 					
 				}
 			}
